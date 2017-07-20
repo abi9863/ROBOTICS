@@ -1,0 +1,92 @@
+import cv2
+#import imutils
+import numpy as np
+
+bg=cv2.imread('test.jpg')
+kv=cv2.imread('k1.png')
+
+#############################  THRESHOLDING OF KINECT IMAGE ############333
+hsv=cv2.cvtColor(bg,cv2.COLOR_BGR2HSV)#CONVERTING TO HSV
+g=cv2.cvtColor(bg,cv2.COLOR_BGR2GRAY)#CONVERTING TO GRAYSCALE
+lb=np.array([0,70,50])#POSSIBLE HSV VALUE FOR RED THRESHOLDING
+hb=np.array([10,255,255])
+mask=cv2.inRange(hsv,lb,hb)
+res=cv2.bitwise_and(bg,bg,mask=mask)#THRESHOLDING
+kernel=np.ones((10,10),np.uint8)
+closing=cv2.morphologyEx(res,cv2.MORPH_CLOSE,kernel)#BETTER IMAGE
+#cv2.imshow("close",closing)
+#cv2.imshow("res",res)
+#cv2.waitKey(0)
+############################# THRESHOLDING RED BLOCK #######################################
+
+hsv1=cv2.cvtColor(kv,cv2.COLOR_BGR2HSV)#CONVERTING TO HSV
+g1=cv2.cvtColor(kv,cv2.COLOR_BGR2GRAY)#CONVERTING TO GRAYSCALE
+#lb=np.array([0,70,50])#POSSIBLE HSV VALUE FOR RED THRESHOLDING
+#hb=np.array([10,255,255])
+#mask1=cv2.inRange(hsv,lb,hb)
+#res1=cv2.bitwise_and(kv,kv,mask=mask)#THRESHOLDING
+#kernel1=np.ones((5,5),np.uint8)
+#closing1=cv2.morphologyEx(res1,cv2.MORPH_CLOSE,kernel)#BETTER IMAGE
+#cv2.imshow("closekinect",closing1)
+#cv2.imshow("reskinect",res1)
+cv2.imshow("close",closing)
+cv2.imshow("res",res)
+
+cv2.waitKey(0)
+
+
+
+
+
+#v1= bg.shape#GETTING SIZE OF THE VIDEO SCREEN
+#print v1[0]
+#H=v1[0]
+#V=v1[1]
+#for i in range(1,v1[0]):
+#	for j in range(1,v1[1]):
+#		v=kv[i,j]
+#               	if (v1[2]>=v1[0]|v1[2]>=v1[1]):
+#			kv[i,j]=v#for target object              	
+#                       
+#                else:
+#                        kv[i,j]=[0,0,0]
+                       
+#gr=cv2.cvtColor(kv,cv2.COLOR_BGR2GRAY)
+#blur=cv2.GaussianBlur(gr,(5,5),0)
+#thresh=cv2.threshold(blur,12,255,cv2.THRESH_BINARY)[1]
+#cv2.imshow("thresh",thresh)
+#cv2.waitKey(0)
+#r=v1[0]
+#c=v1[1]
+#print r
+#print c
+
+#cv2.imshow("img1",kv)
+#cv2.imshow("res",res)
+#cv2.imshow("close",closing)
+#cv2.waitKey(0)
+
+#cnts=cv2.findContours(thresh.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+#cnts=cnts[0] if imutils.is_cv2() else cnts[1]
+
+#for c in cnts:
+
+#        M=cv2.moments(c)
+#        cx=int(M["m10"]/M["m00"])#FINDING CENTRE OF THE TARGET OBJECTS
+#        cy=int(int(M["m01"]/M["m00"])
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+#if (r % 2 == 0):
+#icr=r/2
+#icc=c/2
+#else
+#	ic_r=(r+1)/2
+#	ic_c=(c+1)/2
+
+#if (icc!=cy):
+#        if(icc>cy):#BOT IS LOOKING TO LEFT OR RIGHT
+                #ros block to move the bot left
+#        else
+                #ros block to move the bot right
+
+
+
